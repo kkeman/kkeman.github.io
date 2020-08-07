@@ -12,18 +12,18 @@ image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 ## [apply]
  * 개체구성
 
-## run
+## [run]
  * 개체 구성 및 결과 계산
  * 여러 명령문을 하나의 표현식으로 그룹화 : run비 확장 양식도 있습니다.
 
-## also
+## [also]
  * 개체와 관련된 추가 효과 수행
 
-## let
+## [let]
  * null이 아닌 객체에서 람다 실행
  * 로컬 범위의 변수로 표현식 도입
 
-## with
+## [with]
  * 개체에 대한 그룹화 함수 호출. run확장 프로그램과 유사 하지만 아님
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
@@ -49,4 +49,8 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-talk]: https://talk.jekyllrb.com/
 
-[apply]: https://talk.jekyllrb.com/
+[apply]: https://kotlinlang.org/docs/reference/scope-functions.html#apply
+[run]: https://kotlinlang.org/docs/reference/scope-functions.html#run
+[also]: https://kotlinlang.org/docs/reference/scope-functions.html#also
+[let]: https://kotlinlang.org/docs/reference/scope-functions.html#let
+[with]: https://kotlinlang.org/docs/reference/scope-functions.html#with
