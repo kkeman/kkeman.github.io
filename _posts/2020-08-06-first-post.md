@@ -11,20 +11,60 @@ image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 
 ## [apply]
  * 개체구성
+ ```kotlin
+ val foo = Foo().apply {
+     this.field1 = 1 
+ }
+ ```
 
 ## [run]
  * 개체 구성 및 결과 계산
+  ```kotlin
+ val bar = Foo().run {
+     this.field1 = 1
+     this.toBar() 
+ }
+ ```
  * 여러 명령문을 하나의 표현식으로 그룹화 : run비 확장 양식도 있습니다.
+```kotlin
+val bar = run {
+    val foo = Foo()
+    foo.field1 = 1
+    foo.toBar()
+}
+ ```
 
 ## [also]
  * 개체와 관련된 추가 효과 수행
+ ```kotlin
+val foo = Foo().also {
+     doSomethingTo(it) 
+}
+  ```
 
 ## [let]
  * null이 아닌 객체에서 람다 실행
+ ```kotlin
+val bar = getFoo()?.let {
+     it.toBar() 
+}
+  ```
+
  * 로컬 범위의 변수로 표현식 도입
+ ```kotlin
+(...complicated expression...).let {
+    doSomethingWith(it)
+}
+  ```
 
 ## [with]
  * 개체에 대한 그룹화 함수 호출. run확장 프로그램과 유사 하지만 아님
+  ```kotlin
+val bar = with(Foo()) {
+    this.field1 = 1
+    this.toBar()
+}
+   ```
 
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
@@ -37,11 +77,7 @@ Jekyll also offers powerful support for code snippets:
 	<figcaption><a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png" title="범위 함수 표">범위 함수 표</a>.</figcaption>
 </figure>
 
-```kotlin
-val foo = Foo().apply {
-    this.field1 = 1 
-}
-```
+
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
 
