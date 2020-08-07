@@ -11,8 +11,8 @@ To add new posts, simply add a file in the `_posts` directory that follows the c
 Jekyll also offers powerful support for code snippets:
 
 <figure>
-	<a href="assets/images/1_F5fHRUgq67xrbF9924p2_w.png"><img src="assets/images/1_F5fHRUgq67xrbF9924p2_w.png"></a>
-	<figcaption><a href="assets/images/1_F5fHRUgq67xrbF9924p2_w.png" title="Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr">Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr</a>.</figcaption>
+	<a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"><img src="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"></a>
+	<figcaption><a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png" title="Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr">Morning Fog Emerging From Trees by A Guy Taking Pictures, on Flickr</a>.</figcaption>
 </figure>
 
 ​```python
