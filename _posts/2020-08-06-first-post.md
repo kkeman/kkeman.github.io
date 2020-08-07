@@ -7,7 +7,9 @@ categories: jekyll update
 image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 ---
 
-## apply
+각 범위 함수에 권장되는 사용 사례가 있습니다. 올바른 출력을 반환하고 코드 규칙에 맞는 함수를 선택하십시오.
+
+## [apply]
  * 개체구성
 
 ## run
@@ -47,3 +49,4 @@ Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most ou
 [jekyll-gh]:   https://github.com/jekyll/jekyll
 [jekyll-talk]: https://talk.jekyllrb.com/
 
+[apply]: https://talk.jekyllrb.com/
