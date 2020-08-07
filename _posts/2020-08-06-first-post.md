@@ -11,7 +11,7 @@ image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 
 ## [apply]
  * 개체구성
-{% highlight js %}
+{% highlight kotlin %}
  val foo = Foo().apply {
      this.field1 = 1 
  }
