@@ -37,10 +37,10 @@ Jekyll also offers powerful support for code snippets:
 	<figcaption><a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png" title="범위 함수 표">범위 함수 표</a>.</figcaption>
 </figure>
 
-​```python
-def print_hi(name):
-  print("hello", name)
-print_hi('Tom')
+​```kotlin
+val foo = Foo().apply {
+    this.field1 = 1 
+}
 ​```
 
 Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
