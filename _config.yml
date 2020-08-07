@@ -197,8 +197,10 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+  syntax_highlighter: rouge
   syntax_highlighter_opts:
-    disable : true
+    # Use existing pygments syntax highlighting css
+    css_class: 'highlight'
 
 
 # Sass/SCSS
