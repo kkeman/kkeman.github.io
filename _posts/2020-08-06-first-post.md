@@ -12,7 +12,7 @@ Jekyll also offers powerful support for code snippets:
 
 <figure>
 	<a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"><img src="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"></a>
-	<figcaption><a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png" title="범위 함수" </a>.</figcaption>
+	<figcaption><a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png" title="범위 함수 표">범위 함수 표</a>.</figcaption>
 </figure>
 
 ​```python
