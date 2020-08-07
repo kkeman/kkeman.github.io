@@ -11,11 +11,11 @@ image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 
 ## [apply]
  * 개체구성
- ```kotlin
+{% highlight js %}
  val foo = Foo().apply {
      this.field1 = 1 
  }
- ```
+{% endhighlight %}
 
 ## [run]
  * 개체 구성 및 결과 계산
