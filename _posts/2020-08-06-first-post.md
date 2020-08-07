@@ -11,7 +11,7 @@ image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 
 ## [apply]
  * 개체구성
-  ```kotlin
+```kotlin
  val foo = Foo().apply {
      this.field1 = 1 
  }
@@ -19,7 +19,7 @@ image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 
 ## [run]
  * 개체 구성 및 결과 계산
-  ```kotlin
+```kotlin
  val bar = Foo().run {
      this.field1 = 1
      this.toBar() 
@@ -36,35 +36,35 @@ val bar = run {
 
 ## [also]
  * 개체와 관련된 추가 효과 수행
- ```kotlin
+```kotlin
 val foo = Foo().also {
      doSomethingTo(it) 
 }
-  ```
+```
 
 ## [let]
  * null이 아닌 객체에서 람다 실행
- ```kotlin
+```kotlin
 val bar = getFoo()?.let {
      it.toBar() 
 }
-  ```
+```
 
  * 로컬 범위의 변수로 표현식 도입
- ```kotlin
+```kotlin
 (...complicated expression...).let {
     doSomethingWith(it)
 }
-  ```
+ ```
 
 ## [with]
  * 개체에 대한 그룹화 함수 호출. run확장 프로그램과 유사 하지만 아님
-  ```kotlin
+```kotlin
 val bar = with(Foo()) {
     this.field1 = 1
     this.toBar()
 }
-   ```
+```
 
 <figure>
 	<a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"><img src="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"></a>
