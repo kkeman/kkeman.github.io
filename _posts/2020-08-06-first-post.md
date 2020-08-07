@@ -6,7 +6,7 @@ image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 ---
 
 ### apply
-####### 개체구성
+###### 개체구성
 
 ### run
 #### 개체 구성 및 결과 계산
