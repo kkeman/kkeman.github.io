@@ -71,10 +71,10 @@ val bar = with(Foo()) {
 	<a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"> <img src="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"></a>
 	<figcaption><a title="범위 함수 표">범위 함수 표</a>.</figcaption>
 </figure>
-
-// [apply]: https://kotlinlang.org/docs/reference/scope-functions.html#apply
-// [run]: https://kotlinlang.org/docs/reference/scope-functions.html#run
-// [also]: https://kotlinlang.org/docs/reference/scope-functions.html#also
-// [let]: https://kotlinlang.org/docs/reference/scope-functions.html#let
-// [with]: https://kotlinlang.org/docs/reference/scope-functions.html#with
-// 11
+<!--
+[apply]: https://kotlinlang.org/docs/reference/scope-functions.html#apply
+[run]: https://kotlinlang.org/docs/reference/scope-functions.html#run
+[also]: https://kotlinlang.org/docs/reference/scope-functions.html#also
+[let]: https://kotlinlang.org/docs/reference/scope-functions.html#let
+[with]: https://kotlinlang.org/docs/reference/scope-functions.html#with
+-->
