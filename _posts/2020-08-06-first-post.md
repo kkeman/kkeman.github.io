@@ -72,8 +72,9 @@ val bar = with(Foo()) {
 	<figcaption><a title="범위 함수 표">범위 함수 표</a>.</figcaption>
 </figure>
 
-[apply]: https://kotlinlang.org/docs/reference/scope-functions.html#apply
-[run]: https://kotlinlang.org/docs/reference/scope-functions.html#run
-[also]: https://kotlinlang.org/docs/reference/scope-functions.html#also
-[let]: https://kotlinlang.org/docs/reference/scope-functions.html#let
-[with]: https://kotlinlang.org/docs/reference/scope-functions.html#with
+// [apply]: https://kotlinlang.org/docs/reference/scope-functions.html#apply
+// [run]: https://kotlinlang.org/docs/reference/scope-functions.html#run
+// [also]: https://kotlinlang.org/docs/reference/scope-functions.html#also
+// [let]: https://kotlinlang.org/docs/reference/scope-functions.html#let
+// [with]: https://kotlinlang.org/docs/reference/scope-functions.html#with
+// 11
