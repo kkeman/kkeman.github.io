@@ -5,6 +5,7 @@ header:
 date: 2020-08-06 17:00:00 -0400
 categories: Kotlin Android
 image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
+classes: wide
 ---
 
 각 범위 함수에 권장되는 사용 사례가 있습니다. 올바른 출력을 반환하고 코드 규칙에 맞는 함수를 선택하십시오.
