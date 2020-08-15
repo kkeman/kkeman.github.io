@@ -4,7 +4,6 @@ header:
   overlay_image: /assets/images/unsplash-image-1.jpg
 date: 2020-08-06 17:00:00 -0400
 categories: Kotlin Android
-image: assets/images/1_F5fHRUgq67xrbF9924p2_w.png
 classes: wide
 ---
 
