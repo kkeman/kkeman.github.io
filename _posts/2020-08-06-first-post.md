@@ -67,7 +67,7 @@ val bar = with(Foo()) {
 ```
 
 <figure>
-	<a href="/assets/images/ScopeFunctions.png"> <img src="/assets/images/ScopeFunctions.png"></a>
+	<a href="/assets/images/scope_functions.png"> <img src="/assets/images/scope_functions.png"></a>
 	<figcaption><a title="범위 함수 표">범위 함수 표</a>.</figcaption>
 </figure>
 <!--
