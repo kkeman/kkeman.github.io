@@ -1,7 +1,7 @@
 ---
 title: "Kotlin 범위 함수 (let, run, apply, also, with)"
 header:
-  overlay_image: /assets/images/unsplash-image-1.jpg
+  overlay_image: /assets/images/overlay.jpg
 date: 2020-08-06 17:00:00 -0400
 categories: Kotlin Android
 classes: wide
@@ -67,7 +67,7 @@ val bar = with(Foo()) {
 ```
 
 <figure>
-	<a href="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"> <img src="/assets/images/1_F5fHRUgq67xrbF9924p2_w.png"></a>
+	<a href="/assets/images/ScopeFunctions.png"> <img src="/assets/images/ScopeFunctions.png"></a>
 	<figcaption><a title="범위 함수 표">범위 함수 표</a>.</figcaption>
 </figure>
 <!--
