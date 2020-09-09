@@ -22,6 +22,7 @@ published: true
 # Collection 유형
 
  **Immutable:** 컬렉션 요소에 액세스하기위한 작업을 제공 하는 읽기 전용 인터페이스입니다.
+ 
  **Mutable:** 쓰기 작업 (elements 추가, 삭제 및 변경)으로 해당 읽기 전용 인터페이스를 확장 하는 변경 가능한 인터페이스입니다
 
 
