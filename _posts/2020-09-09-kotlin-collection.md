@@ -19,7 +19,7 @@ published: true
 **Map:** key-value에 집합입니다. 키는 고유하며 각 키는 정확히 하나의 값에 매핑됩니다. 값은 중복 될 수 있습니다.
 
 
-## Collection 유형
+# Collection 유형
 
  **Immutable:** 컬렉션 요소에 액세스하기위한 작업을 제공 하는 읽기 전용 인터페이스입니다.
  **Mutable:** 쓰기 작업 (elements 추가, 삭제 및 변경)으로 해당 읽기 전용 인터페이스를 확장 하는 변경 가능한 인터페이스입니다
@@ -41,9 +41,9 @@ numbers.add("five")   // this is OK
 
 
 
-## 인터페이스 구현
+# 인터페이스 구현
 
-# List
+## List
 **Immutable:** Kotlin의 List는 기본적으로 Immutable방식이며 get만 가능합니다.
 ```kotlin
 val numbers = listOf("one", "two", "three", "four")
