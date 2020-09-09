@@ -45,13 +45,15 @@ numbers.add("five")   // this is OK
 # 인터페이스 구현
 
 ## List
+목록 elements(null 포함)는 중복 될 수 있습니다. 목록에는 동일한 개체 또는 단일 개체의 항목이 얼마든지 포함될 수 있습니다. 두 목록의 크기가 같고 동일한 위치에 구조적으로 동일한 요소 가 있으면 동일한 것으로 간주됩니다 .
+
 **Immutable:** Kotlin의 List는 기본적으로 Immutable방식이며 get만 가능합니다.
 ```kotlin
 val numbers = listOf("one", "two", "three", "four")
 numbers[3]
  ```
 
-**Mutable:** 추가, 삭제 및 변경이 가능하며 
+**Mutable:** mutableListOf(), arrayListOf()가 있으며 추가, 삭제 및 변경이 가능합니다.
 ```kotlin
 val numbers = mutableListOf(1, 2, 3, 4)
 numbers.add(5)
@@ -60,10 +62,41 @@ numbers[0] = 0
 numbers.shuffle()
  ```
 
+## Set
+고유 한 요소를 저장합니다. 그들의 순서는 일반적으로 정의되지 않습니다. null요소도 고유합니다.
 
+**Immutable:** 
+```kotlin
+val numbers = setOf<Int>(1, 2, 3, 4, 5, 6)
+numbers.size
+numbers.contains(1)
+numbers.isEmpty()
+ ```
 
+**Mutable:** mutableSetOf, hashSetOf, linkedSetOf, sortedSetOf 등의 함수가 있습니다.
+```kotlin
+val numbers = mutableSetOf<Int>(1, 2, 3, 4, 5, 6)
+numbers.add(10)
+numbers.remove(4)
+numbers.removeIf({ it < 3 })
+ ```
 
+## Map
+Collection인터페이스의 상속자가 아닙니다. 그러나 Kotlin Collection 유형 이기도합니다. Map는 키-값 (또는 elements)을 저장 합니다. 키는 고유하지만 다른 키는 동일한 값으로 쌍을 이룰 수 있습니다.
 
+**Immutable:** 
+```kotlin
+val numbersMap = mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key4" to 1)
+if ("key2" in numbersMap)
+if (1 in numbersMap.values)
+numbersMap.containsValue(1)
+ ```
 
+**Mutable:** mutableMapOf, hashMapOf, linkedMapOf, sortedMapOf 등의 함수가 있습니다.
+```kotlin
+val numbersMap = mutableMapOf("one" to 1, "two" to 2)
+numbersMap.put("three", 3)
+numbersMap["one"] = 11
+ ```
 
 
