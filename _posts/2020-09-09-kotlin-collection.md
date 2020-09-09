@@ -43,7 +43,7 @@ numbers.add("five")   // this is OK
 
 ## 인터페이스 구현
 
- * List 
+# List
 **Immutable:** Kotlin의 List는 기본적으로 Immutable방식이며 get만 가능합니다.
 ```kotlin
 val numbers = listOf("one", "two", "three", "four")
