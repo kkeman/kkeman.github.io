@@ -23,10 +23,10 @@ published: true
 
  **Immutable:** 컬렉션 요소에 액세스하기위한 작업을 제공 하는 읽기 전용 인터페이스입니다.
  
- **Mutable:** 쓰기 작업 (elements 추가, 삭제 및 변경)으로 해당 읽기 전용 인터페이스를 확장 하는 변경 가능한 인터페이스입니다
+ **Mutable:** 쓰기 작업(elements 추가, 삭제 및 변경)으로 해당 읽기 외에 확장 및 변경 가능한 인터페이스입니다
 
 
-변경 가능한 컬렉션을 변경한다고해서 반드시 변경되는 것은 아닙니다 `val`컬렉션 을 재 할당하려고 하면 컴파일 오류가 발생합니다.
+Mutable 컬렉션을 변경한다고해서 반드시 변경되는 것은 아닙니다 `val`에 컬렉션 을 재 할당하려고 하면 컴파일 오류가 발생합니다.
 
 ```kotlin
 val numbers = mutableListOf("one", "two", "three", "four")
@@ -82,7 +82,7 @@ numbers.removeIf({ it < 3 })
  ```
 
 ## Map
-Collection인터페이스의 상속자가 아닙니다. 그러나 Kotlin Collection 유형 이기도합니다. Map는 키-값 (또는 elements)을 저장 합니다. 키는 고유하지만 다른 키는 동일한 값으로 쌍을 이룰 수 있습니다.
+Collection인터페이스의 상속자가 아닙니다. 그러나 Kotlin Collection 유형 이기도합니다. Map는 키-값 (또는 elements)을 저장 합니다. 키는 고유하지만 다른 키 들은 동일한 값으로 쌍을 이룰 수 있습니다.
 
 **Immutable:** 
 ```kotlin
