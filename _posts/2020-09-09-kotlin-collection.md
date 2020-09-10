@@ -32,7 +32,7 @@ Mutable 컬렉션을 변경한다고해서 반드시 변경되는 것은 아닙�
 val numbers = mutableListOf("one", "two", "three", "four")
 numbers.add("five")   // this is OK    
 //numbers = mutableListOf("six", "seven")      // compilation error
- ```
+```
 
 
 다음은 Kotlin 컬렉션 인터페이스의 다이어그램입니다.
