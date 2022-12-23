@@ -1,0 +1,94 @@
+<!--
+---
+title: "RxJava RxKotlin RxAndroid"
+header:
+  overlay_image: /assets/images/overlay.jpg
+date: 2020-08-16 02:00:00 -0000
+categories:
+  - Kotlin
+  - Android
+classes: wide
+published: true
+---
+
+Paging은 로컬 저장소 또는 네트워크에서 작은 데이터를 로드하고 앱의 UI 내에 멋지게 표시하는 라이브러리 입니다.
+
+Kotlin의 코루틴을 사용하여 완전히 다시 작성된 라이브러리로 업데이트 되었습니다.
+
+## Paging 3.0의 새로운 기능
+ * `refresh` 및 `retry` 메커니즘을 포함하여 `error` 처리를위한 기본 기능 지원.
+ * Kotlin의 `coroutines` 및 `Flow`, `LiveData` 및 `RxJava`에 대한 지원.
+ * `separator`, `header`, `footer` 지원
+ * 여러 요청이 동시에 트리거되지 않도록합니다.
+ 
+ 
+## 아키텍처
+ * Repository 레이어 : 데이터베이스 및 웹 API 서비스와 함께 작동하여 통합 데이터 인터페이스를 제공하는 리포지토리입니다.
+ * ViewModel 레이어 : 저장소 레이어를 UI에 연결하는 구성 요소입니다.
+ * UI 레이어 : 사용자에게 데이터를 시각적으로 표현합니다.
+ 
+ <figure class="align-center">
+   <img src="{{ site.url }}{{ site.baseurl }}/assets/images/paging3_architecture.png" alt="">
+   <figcaption>Paging3 아키텍처.</figcaption>
+ </figure> 
+ 
+ 
+## 코드
+
+ * 종속성 설정
+```kotlin
+implementation 'androidx.paging:paging-runtime:3.0.0-alpha05'
+ ```
+
+
+ * 코드 설정
+ 
+이것이 우리가 백엔드에 연결하는 페이징의 핵심입니다. `Load`구현해야하는 단일 메서드 가있는 `PagingSource` 클래스를 확장합니다. 여기서 우리는 API 서비스를 호출하고 결과를 페이징합니다.
+```kotlin
+class ExamplePagingSource(
+    val backend: ExampleBackendService,
+    val query: String
+) : PagingSource<Int, User>() {
+  override suspend fun load(
+    params: LoadParams<Int>
+  ): LoadResult<Int, User> {
+    try {
+      // Start refresh at page 1 if undefined.
+      val nextPageNumber = params.key ?: 1
+      val response = backend.searchUsers(query, nextPageNumber)
+      return LoadResult.Page(
+        data = response.users,
+        prevKey = null, // Only paging forward.
+        nextKey = response.nextPageNumber
+      )
+    } catch (e: Exception) {
+      // Handle errors in this block and return LoadResult.Error if it is an
+      // expected error (such as a network failure).
+    }
+  }
+}
+ ```
+
+ * `PagingSource` 작업을 마치면 이제 `ViewModel` 에서 페이지 크기를 구성하는 `Pager` 를 만들 수 있습니다.
+```kotlin
+val flow = Pager(
+  // Configure how data is loaded by passing additional properties to
+  // PagingConfig, such as prefetchDistance.
+  PagingConfig(pageSize = 20)
+) {
+  ExamplePagingSource(backend, query)
+}.flow
+  .cachedIn(viewModelScope)
+ ```
+
+
+```kotlin
+
+ ```
+
+
+-->
+
+
+
+
