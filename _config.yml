@@ -94,10 +94,10 @@ analytics:
 # Site Author
 author:
   name             : "KKE"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "https://ca.slack-edge.com/T02QHJVF3JB-U02QY96HHCK-c950da6d4493-192" "# path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Trend, Fun, Passion"
   location         : "Seoul"
-  email            :
+  email            : "kkeman11@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
