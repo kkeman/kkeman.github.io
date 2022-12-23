@@ -7,7 +7,7 @@ categories:
   - Kotlin
   - Android
 classes: wide
-published: false
+published: true
 ---
 
 Reactive Programming 옵져버 패턴을 이용하여 구독자에게 변경사항을 알려주는 programming 기법 입니다.
