@@ -1,14 +1,13 @@
-<!--
 ---
-title: "RxJava RxKotlin RxAndroid"
+title: "Reactive Programming RxJava RxKotlin RxAndroid 란?"
 header:
   overlay_image: /assets/images/overlay.jpg
-date: 2020-08-16 02:00:00 -0000
+date: 2022-12-23 11:53:00 -0000
 categories:
   - Kotlin
   - Android
 classes: wide
-published: true
+published: false
 ---
 
 Paging은 로컬 저장소 또는 네트워크에서 작은 데이터를 로드하고 앱의 UI 내에 멋지게 표시하는 라이브러리 입니다.
@@ -85,10 +84,6 @@ val flow = Pager(
 ```kotlin
 
  ```
-
-
--->
-
 
 
 
