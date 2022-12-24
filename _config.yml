@@ -94,7 +94,7 @@ analytics:
 # Site Author
 author:
   name             : "KKE"
-  avatar           : "/assets/images/EmojiMovie0.mov" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/zephyros.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Trend, Fun, Passion"
   location         : "Seoul"
   email            : "kkeman11@gmail.com"
