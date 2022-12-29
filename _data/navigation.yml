@@ -10,7 +10,7 @@ main:
 
 categories:
   - title: "Kotlin,Android"
-    url: /categories/kotlin,android/
+    url: /categories/android/
   - title: "SpringBoot"
     url: /categories/springboot/
 #  - title: "Algorithm"
