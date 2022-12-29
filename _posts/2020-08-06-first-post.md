@@ -3,8 +3,8 @@ title: "Kotlin 범위 함수 (let, run, apply, also, with)"
 header:
   overlay_image: /assets/images/overlay.jpg
 date: 2020-08-06 17:00:00 -0400
-categories:
-  - Kotlin,Android
+categories: Kotlin,Android
+permalink: /categories1/kotlin,android/
 classes: wide
 ---
 

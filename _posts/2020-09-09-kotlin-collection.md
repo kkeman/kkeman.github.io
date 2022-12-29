@@ -4,6 +4,7 @@ header:
   overlay_image: /assets/images/overlay.jpg
 date: 2020-09-09 02:00:00 -0000
 categories: Kotlin,Android
+permalink: /categories1/kotlin,android/
 published: true
 ---
 
