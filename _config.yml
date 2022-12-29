@@ -265,7 +265,6 @@ compress_html:
   ignore:
     envs: development
 
-
 # Defaults
 defaults:
   # _posts
@@ -279,3 +278,5 @@ defaults:
       comments: # true
       share: true
       related: true
+      sidebar:                  # 추가한 부분
+        nav: "sidebar-category" # 추가한 부분

@@ -1,20 +1,20 @@
-#sidebar-category:
-#  - title: "Category~"
-#    children:
-#      - title: "Kotlin,Android"
-#        url: "/Kotlin,Android"
-#      - title: "SpringBoot"
-#        url:  "/SpringBoot"
-#      - title: "Datebase"
-#        url:  "/Datebase"
+sidebar-category:
+  - title: "Category~"
+    children:
+      - title: "Kotlin,Android"
+        url: "/Kotlin,Android"
+      - title: "SpringBoot"
+        url:  "/SpringBoot"
+      - title: "Datebase"
+        url:  "/Datebase"
 
-# main links
-main:
-  #- title: "Home"
-  #  url: "/"
-  - title: "Introduce"
-    url: /about/
-  - title: "Category"
-    url: "/categories/"
-  - title: "Tags"
-    url: /tags/
+## main links
+#main:
+#  #- title: "Home"
+#  #  url: "/"
+#  - title: "Introduce"
+#    url: /about/
+#  - title: "Category"
+#    url: "/categories/"
+#  - title: "Tags"
+#    url: /tags/
