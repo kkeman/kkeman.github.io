@@ -1,7 +1,7 @@
 ---
 title: "Kotlin,Android"
 layout: category
-permalink: /android/
+permalink: /categories/kotlin,android/
 author_profile: true
 taxonomy: Kotlin,Android
 sidebar:
