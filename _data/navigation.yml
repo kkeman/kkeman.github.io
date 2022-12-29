@@ -1,20 +1,36 @@
-sidebar-category:
-  - title: "Category~"
-    children:
-      - title: "Kotlin,Android"
-        url: "/Kotlin,Android"
-      - title: "SpringBoot"
-        url:  "/SpringBoot"
-      - title: "Datebase"
-        url:  "/Datebase"
+main:
+  - title: "Home"
+    url: https://kkeman.github.io/
 
-## main links
-#main:
-#  #- title: "Home"
-#  #  url: "/"
-#  - title: "Introduce"
+#  - title: "About"
 #    url: /about/
-#  - title: "Category"
-#    url: "/categories/"
-#  - title: "Tags"
-#    url: /tags/
+
+  - title: "GitHub"
+    url: https://github.com/kkeman
+
+categories:
+  - title: "Kotlin,Android"
+    url: /categories/kotlin,android/
+  - title: "SpringBoot"
+    url: /categories/python/
+#  - title: "Algorithm"
+#    url: /categories/algorithm/
+#  - title: "Web"
+#    url: /categories/web/
+#  - title: "Git"
+#    url: /categories/git/
+#  - title: "GitHub Blog"
+#    url: /categories/github-blog/
+#  - title: "Machine Learning"
+#    url: /categories/machine-learning/
+
+
+    #sidebar-category:
+    #  - title: "Category~"
+    #    children:
+    #      - title: "Kotlin,Android"
+    #        url: "/Kotlin,Android"
+    #      - title: "SpringBoot"
+    #        url:  "/SpringBoot"
+    #      - title: "Datebase"
+    #        url:  "/Datebase"
