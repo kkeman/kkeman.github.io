@@ -4,7 +4,7 @@ header:
   overlay_image: /assets/images/overlay.jpg
 date: 2022-12-23 11:53:00 -0000
 categories: Kotlin,Android
-permalink: /kotlin,android/reactive
+permalink: /categories/kotlin,android/reactive
 classes: wide
 published: true
 ---
