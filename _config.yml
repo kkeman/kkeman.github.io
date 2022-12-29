@@ -239,12 +239,7 @@ whitelist:
 #  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
 #  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
 #  - <base_path>/my-awesome-category/index.html ~> path: /
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
+
 # https://github.com/jekyll/jekyll-archives
 #jekyll-archives:
 #  enabled:
@@ -265,19 +260,26 @@ compress_html:
   ignore:
     envs: development
 
-## Defaults
-#defaults:
-#  # _posts
-#  - scope:
-#      path: ""
-#      type: posts
-#    values:
-#      layout: single
-#      author_profile: true
-#      read_time: #true
-#      show_date: true
-#      comments: true
-#      # share: true
-#      related: true
-#      sidebar:
-#        nav: "categories"
+category_archive:
+  type: liquid
+  path: /categories/
+#tag_archive:
+#  type: liquid
+#  path: /tags/
+
+# Defaults
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: #true
+      show_date: true
+      comments: true
+      # share: true
+      related: true
+      sidebar:
+        nav: "categories"
