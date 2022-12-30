@@ -7,9 +7,9 @@ main:
     url: https://github.com/kkeman
 
 categories:
-  - title: "kotlin,Android"
+  - title: "#Kotlin,Android"
     url: /categories/kotlin,android/
-  - title: "springBoot1"
+  - title: "#SpringBoot"
     url: /categories/springboot/
 
 
