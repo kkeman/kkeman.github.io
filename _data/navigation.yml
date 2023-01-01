@@ -7,15 +7,12 @@ main:
     url: https://github.com/kkeman
 
 categories:
-  - title: Kotlin,Android
+  - title: "Kotlin,Android"
     url: /categories/kotlin,android/
-  - title: SpringBoot
+  - title: "SpringBoot"
     url: /categories/springboot/
-
-
-
-#  - title: "Algorithm"
-#    url: /categories/algorithm/
+  - title: "Algorithm"
+    url: /categories/algorithm/
 #  - title: "Web"
 #    url: /categories/web/
 #  - title: "Git"
