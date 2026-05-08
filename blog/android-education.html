@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사내 Android 교육 8주 커리큘럼 설계기 — 13명의 개발자와 함께</title>
+<title>개발 조직에서 사내 기술 교육을 설계하는 법</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -26,9 +26,6 @@ article ul,article ol{margin:0 0 20px 20px;color:var(--tx2)}article li{font-size
 .hl{background:var(--em-g);border-left:3px solid var(--em);padding:16px 20px;border-radius:0 var(--r) var(--r) 0;margin:24px 0;font-size:15px;color:var(--tx2);line-height:1.75}.hl strong{color:var(--em)}
 pre{background:var(--c1);border:1px solid var(--bdr);border-radius:12px;padding:20px 24px;margin:20px 0;overflow-x:auto;font-family:var(--fm);font-size:13px;line-height:1.8;color:var(--tx2)}
 code{font-family:var(--fm);font-size:14px;background:var(--c2);padding:2px 6px;border-radius:4px;color:var(--tx2)}pre code{background:none;padding:0}
-.rb{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;margin:24px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
-.rb .v{font-size:28px;font-weight:800;letter-spacing:-1px}.rb .v.g{color:var(--em)}.rb .v.b{color:var(--bl)}.rb .v.a{color:var(--am)}
-.rb .l{font-family:var(--fm);font-size:11px;color:var(--tx4);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
 .pv{display:flex;align-items:center;gap:0;margin:24px 0;padding:20px;background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);overflow-x:auto;flex-wrap:wrap;justify-content:center}
 .pn{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:80px}
 .pi{width:40px;height:40px;border-radius:10px;border:1px solid var(--bdr);background:var(--c2);display:flex;align-items:center;justify-content:center;font-size:16px}
@@ -38,60 +35,53 @@ code{font-family:var(--fm);font-size:14px;background:var(--c2);padding:2px 6px;b
 .au-lk{margin-left:auto;display:flex;gap:8px}
 .au-lk a{font-family:var(--fm);font-size:12px;color:var(--tx3);text-decoration:none;padding:6px 12px;border:1px solid var(--bdr);border-radius:6px;transition:all .2s}.au-lk a:hover{color:var(--tx2);border-color:var(--bdr-h)}
 footer{max-width:760px;margin:0 auto;padding:32px;border-top:1px solid var(--bdr);text-align:center}footer p{font-family:var(--fm);font-size:11px;color:var(--tx4)}
-@media(max-width:600px){.rb{grid-template-columns:1fr}.pv .pa{display:none}}
+@media(max-width:600px){.pv .pa{display:none}}
 </style>
 </head>
 <body>
 <nav><div class="ni"><a href="../" class="logo"><b>$</b> gogyeongeun</a><a href="./" class="back">← Blog</a></div></nav>
 <article>
 <div class="meta">2026.05 · 7 min read</div>
-<h1>사내 Android 교육 8주 커리큘럼 설계기 — 13명의 개발자와 함께</h1>
-<p class="sub">비전공자부터 다른 플랫폼 개발자까지, 13명에게 8주간 Android 개발을 가르치며 배운 것.</p>
-<h2>배경</h2>
-<p>KT 나스미디어에서 SDK 개발을 하다 보면 다른 팀과 협업할 일이 많습니다. 그런데 SDK의 동작 원리를 이해하는 사람이 우리 팀 밖에는 거의 없었습니다. 백엔드 개발자가 "SDK에서 이 API를 왜 이렇게 호출하는지 모르겠다"고 하고, QA가 "이 크래시가 SDK 문제인지 앱 문제인지 구분을 못하겠다"고 하는 상황이 반복됐습니다.</p>
-<p><strong>교육의 목표는 "Android 개발자를 만드는 것"이 아니라, "SDK가 돌아가는 환경을 이해하는 사람을 늘리는 것"이었습니다.</strong></p>
+<h1>개발 조직에서 사내 기술 교육을 설계하는 법</h1>
+<p class="sub">비전공자부터 다른 플랫폼 개발자까지, 다양한 배경의 수강생에게 기술을 가르칠 때 효과적인 커리큘럼 설계 원칙들.</p>
+<h2>교육의 목표부터 정하라</h2>
+<p>"Android 개발자를 만드는 것"과 "Android 환경을 이해하는 사람을 늘리는 것"은 완전히 다른 목표입니다. 목표에 따라 커리큘럼 깊이가 달라집니다.</p>
+<p>SDK 팀 밖의 사람들 — 백엔드 개발자, QA, 기획자 — 이 Android의 기본 구조를 이해하면 커뮤니케이션 비용이 줄어듭니다. 크래시 리포트를 보고 "이건 RecyclerView Adapter 문제 같다"고 말할 수 있는 QA와, "앱이 죽어요"만 말하는 QA는 차원이 다릅니다.</p>
 
-<h2>수강생 구성</h2>
-<p>13명의 배경은 다양했습니다:</p>
+<h2>수강생 분석이 먼저</h2>
+<p>같은 교육이라도 수강생 배경에 따라 접근이 달라야 합니다:</p>
 <ul>
-<li>백엔드 개발자 4명 (Java/Spring 경험)</li>
-<li>프론트엔드 개발자 2명 (React/Vue 경험)</li>
-<li>QA 엔지니어 3명</li>
-<li>기획자 2명</li>
-<li>신입 개발자 2명</li>
+<li><strong>Java/Spring 백엔드 개발자</strong> — Kotlin 문법은 빠르게 넘어가고 Android 특수성(Activity 생명주기, UI 스레드)에 시간을 투자</li>
+<li><strong>프론트엔드 개발자</strong> — UI 구성 개념은 익숙하니 Layout XML과 React의 차이점 중심</li>
+<li><strong>비개발자(QA, 기획)</strong> — 코드보다 "왜 이렇게 동작하는지" 개념 설명에 집중</li>
 </ul>
-<p>프로그래밍 경험이 전혀 없는 사람부터 다른 언어에 익숙한 사람까지 폭이 넓었습니다.</p>
 
-<h2>8주 커리큘럼</h2>
+<h2>8주 커리큘럼 설계 예시</h2>
 
-<h3>1~2주: Kotlin 기초 + Android 프로젝트 구조</h3>
-<p>변수, 함수, 클래스부터 시작. Android Studio 설치와 Hello World. <strong>핵심은 "직접 빌드해서 폰에서 돌려보기"였습니다.</strong> 자기 폰에서 앱이 실행되는 경험이 동기를 만듭니다.</p>
+<h3>1~2주: 환경 세팅 + 첫 빌드</h3>
+<p>Android Studio 설치, 에뮬레이터 세팅, Hello World. <strong>자기 폰에서 앱이 실행되는 경험이 동기를 만듭니다.</strong> 첫 수업 전에 환경 세팅을 완료하게 하세요 — 세팅에 수업 시간을 쓰면 2시간이 날아갑니다.</p>
 
-<h3>3~4주: UI 기초 + RecyclerView</h3>
-<p>Layout XML, View 시스템, RecyclerView로 리스트 표시. 실습은 간단한 TODO 앱 만들기. 여기서 절반이 "이거 재밌다"와 "이거 어렵다"로 갈립니다.</p>
+<h3>3~4주: UI + 리스트</h3>
+<p>Layout XML, RecyclerView. 실습은 TODO 앱 만들기. 이 시점에서 흥미를 느끼는 사람과 어려워하는 사람이 갈립니다. <strong>어려워하는 사람을 위한 보조 자료를 미리 준비하세요.</strong></p>
 
-<h3>5~6주: 네트워크 통신 + API 연동</h3>
-<p>Retrofit으로 REST API 호출, JSON 파싱, 비동기 처리(Coroutine 기초). <strong>실습은 우리 SDK의 실제 API를 호출해서 오퍼월 데이터를 가져와 표시하기.</strong> 이 시점에서 "아, SDK가 이런 식으로 데이터를 가져오는구나"를 체감합니다.</p>
+<h3>5~6주: 네트워크 + API</h3>
+<p>Retrofit, JSON 파싱, Coroutine 기초. <strong>핵심 팁: 실제 서비스의 API를 호출하는 실습이 가장 효과적입니다.</strong> 가짜 API보다 "우리 서비스의 진짜 데이터가 내가 만든 앱에 뜬다"는 경험이 몰입을 만듭니다.</p>
 
-<h3>7~8주: 아키텍처 + SDK 구조 이해</h3>
-<p>MVVM 패턴, ViewModel, LiveData. 마지막 주는 실제 SDK 코드를 같이 읽으며 구조를 설명. 왜 Clean Architecture를 쓰는지, Dagger가 무슨 문제를 해결하는지.</p>
+<h3>7~8주: 아키텍처 + 실무 코드 리딩</h3>
+<p>MVVM, ViewModel, LiveData. 마지막 주는 실제 프로덕션 코드를 같이 읽으며 "왜 이 구조를 선택했는지" 설명합니다.</p>
 
-<h2>효과가 있었나</h2>
-<div class="hl"><strong>직접적인 효과:</strong> QA팀이 크래시 리포트를 읽고 "이건 SDK의 RecyclerView Adapter 문제 같다"고 구체적으로 이야기할 수 있게 됐습니다. 백엔드 팀과 API 스펙을 논의할 때 "Android에서 이 형식은 파싱이 어렵다"는 피드백이 나오기 시작했습니다.</div>
+<h2>효과적인 교육을 위한 원칙</h2>
 
-<h2>교육하면서 배운 것</h2>
+<h3>코드보다 "왜"가 먼저</h3>
+<p>RecyclerView를 가르칠 때 "ViewHolder 패턴은..."이 아니라 <strong>"스크롤할 때 매번 View를 새로 만들면 느려지니까"</strong>부터 시작하면 이해 속도가 다릅니다.</p>
 
-<h3>1. 코드보다 "왜"가 먼저</h3>
-<p>비개발자에게 코드를 보여주기 전에 "이 코드가 해결하는 문제"를 먼저 설명해야 합니다. RecyclerView를 가르칠 때 "ViewHolder 패턴은..."이 아니라 "스크롤할 때 매번 View를 새로 만들면 느려지니까"부터 시작하면 이해 속도가 다릅니다.</p>
+<h3>매주 동작하는 결과물</h3>
+<p>매주 끝날 때 "이번 주에 만든 것"이 있어야 합니다. 이론만 하면 3주차에 절반이 이탈합니다.</p>
 
-<h3>2. 실습 환경 세팅이 반</h3>
-<p>첫 주에 Android Studio 설치하고 에뮬레이터 세팅하는 데만 2시간이 걸린 사람이 있었습니다. <strong>사전에 환경 세팅 가이드를 배포하고, 첫 수업 전에 빌드가 되는 상태를 확인하는 게 중요합니다.</strong></p>
+<h3>녹화보다 라이브</h3>
+<p>녹화 영상은 거의 안 봅니다. 라이브로 코딩하면서 실수하고 디버깅하는 과정을 보여주는 게 훨씬 효과적입니다.</p>
 
-<h3>3. 20명 CI/CD 세미나도 진행</h3>
-<p>8주 교육 이후 CI/CD 세미나를 별도로 진행했습니다. GitHub Actions, 배포 자동화, Sentry 모니터링까지. 교육보다 세미나 형식이 경력 개발자에게는 더 효과적이었습니다. 이미 "왜"를 아는 사람들에게는 "어떻게"만 보여주면 됩니다.</p>
-
-<h2>조직에 남긴 것</h2>
-<p><strong>교육은 일회성이지만, 공통 언어는 남습니다.</strong> "Activity", "Fragment", "Coroutine" 같은 단어를 팀 전체가 알고 있으면 커뮤니케이션 비용이 줄어듭니다. SDK 팀만의 용어가 아니라 조직의 공통 어휘가 되는 것, 그게 교육의 진짜 가치였습니다.</p>
+<div class="hl"><strong>핵심:</strong> 교육의 진짜 가치는 기술 전달이 아니라 공통 언어를 만드는 것입니다. "Activity", "Coroutine", "RecyclerView" 같은 단어를 팀 전체가 이해하면 커뮤니케이션 비용이 구조적으로 줄어듭니다.</div>
 <div class="au"><div><div class="nm">고경은</div><div class="rl">Developer Platform Engineer @ KT 나스미디어</div></div><div class="au-lk"><a href="https://github.com/kkeman">GitHub</a><a href="../">Portfolio</a></div></div>
 </article>
 <footer><p>© 2026 고경은</p></footer>
