@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kotlin Collection — Mutable vs Immutable, SDK에서의 선택 기준</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#08080c;--c1:#0f0f15;--c2:#15151d;--bdr:rgba(255,255,255,.055);--bdr-h:rgba(255,255,255,.1);--tx:#f2f1f4;--tx2:#9e9caa;--tx3:#5e5c6a;--tx4:#38374a;--em:#22c55e;--em-g:rgba(34,197,94,.06);--bl:#818cf8;--am:#fbbf24;--pk:#f472b6;--r:16px;--fd:'Outfit','Noto Sans KR',sans-serif;--fi:'Instrument Serif',serif;--fm:'IBM Plex Mono',monospace}
+html{scroll-behavior:smooth}body{font-family:var(--fd);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;overflow-x:hidden}::selection{background:var(--em);color:#000}
+nav{position:fixed;top:0;width:100%;z-index:200;padding:16px 0;background:rgba(8,8,12,.9);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--bdr)}
+.ni{max-width:760px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:var(--fm);font-size:14px;font-weight:500;color:var(--tx3);text-decoration:none}.logo b{color:var(--em)}
+.back{font-family:var(--fm);font-size:12px;color:var(--tx3);text-decoration:none;padding:7px 14px;border-radius:8px;border:1px solid var(--bdr);transition:all .2s}.back:hover{color:var(--tx2);border-color:var(--bdr-h)}
+article{max-width:760px;margin:0 auto;padding:120px 32px 80px}
+.meta{font-family:var(--fm);font-size:12px;color:var(--tx4);letter-spacing:.5px;margin-bottom:16px}
+article h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-1.5px;line-height:1.2;margin-bottom:16px}
+.sub{font-size:17px;color:var(--tx2);line-height:1.7;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--bdr)}
+article h2{font-size:22px;font-weight:700;letter-spacing:-.5px;margin-top:48px;margin-bottom:16px;color:var(--tx)}
+article h3{font-size:18px;font-weight:600;margin-top:32px;margin-bottom:12px;color:var(--tx2)}
+article p{font-size:16px;color:var(--tx2);line-height:1.85;margin-bottom:20px}
+article strong{color:var(--tx);font-weight:600}
+article ul,article ol{margin:0 0 20px 20px;color:var(--tx2)}article li{font-size:16px;line-height:1.85;margin-bottom:8px}
+.hl{background:var(--em-g);border-left:3px solid var(--em);padding:16px 20px;border-radius:0 var(--r) var(--r) 0;margin:24px 0;font-size:15px;color:var(--tx2);line-height:1.75}.hl strong{color:var(--em)}
+pre{background:var(--c1);border:1px solid var(--bdr);border-radius:12px;padding:20px 24px;margin:20px 0;overflow-x:auto;font-family:var(--fm);font-size:13px;line-height:1.8;color:var(--tx2)}
+code{font-family:var(--fm);font-size:14px;background:var(--c2);padding:2px 6px;border-radius:4px;color:var(--tx2)}pre code{background:none;padding:0}
+.rb{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;margin:24px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+.rb .v{font-size:28px;font-weight:800;letter-spacing:-1px}.rb .v.g{color:var(--em)}.rb .v.b{color:var(--bl)}.rb .v.a{color:var(--am)}
+.rb .l{font-family:var(--fm);font-size:11px;color:var(--tx4);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.pv{display:flex;align-items:center;gap:0;margin:24px 0;padding:20px;background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);overflow-x:auto;flex-wrap:wrap;justify-content:center}
+.pn{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:80px}
+.pi{width:40px;height:40px;border-radius:10px;border:1px solid var(--bdr);background:var(--c2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.pm{font-family:var(--fm);font-size:10px;color:var(--tx4)}.pa{color:var(--tx4);font-size:11px;font-family:var(--fm);margin:0 4px;margin-bottom:16px}
+.au{display:flex;align-items:center;gap:16px;padding:32px 0;margin-top:48px;border-top:1px solid var(--bdr)}
+.au .nm{font-size:16px;font-weight:700}.au .rl{font-size:13px;color:var(--tx3)}
+.au-lk{margin-left:auto;display:flex;gap:8px}
+.au-lk a{font-family:var(--fm);font-size:12px;color:var(--tx3);text-decoration:none;padding:6px 12px;border:1px solid var(--bdr);border-radius:6px;transition:all .2s}.au-lk a:hover{color:var(--tx2);border-color:var(--bdr-h)}
+footer{max-width:760px;margin:0 auto;padding:32px;border-top:1px solid var(--bdr);text-align:center}footer p{font-family:var(--fm);font-size:11px;color:var(--tx4)}
+@media(max-width:600px){.rb{grid-template-columns:1fr}.pv .pa{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="ni"><a href="../" class="logo"><b>$</b> gogyeongeun</a><a href="./" class="back">← Blog</a></div></nav>
+<article>
+<div class="meta">2020.09 · Updated 2026.05 · 5 min read</div>
+<h1>Kotlin Collection — Mutable vs Immutable, SDK에서의 선택 기준</h1>
+<p class="sub">List, Set, Map의 Mutable/Immutable 구분은 기본이지만, SDK 개발에서는 이 선택이 API 설계에 직결됩니다.</p>
+<h2>왜 SDK에서 Immutable이 중요한가</h2>
+<p>SDK의 public API에서 <code>MutableList</code>를 반환하면, 외부 개발자가 내부 상태를 직접 변경할 수 있습니다. <strong>이건 버그가 아니라 설계 결함입니다.</strong></p>
+<pre><code>// ❌ 외부에서 내부 상태 변경 가능
+fun getOffers(): MutableList&lt;Offer&gt; = offers
+
+// ✅ 읽기 전용 뷰만 노출
+fun getOffers(): List&lt;Offer&gt; = offers.toList()</code></pre>
+
+<h2>Collection 유형 정리</h2>
+<h3>List — 순서 있는 컬렉션</h3>
+<pre><code>// Immutable: 읽기만
+val items = listOf("one", "two", "three")
+
+// Mutable: 추가/삭제/변경
+val items = mutableListOf(1, 2, 3)
+items.add(4)
+items.removeAt(0)</code></pre>
+
+<h3>Set — 중복 없는 컬렉션</h3>
+<pre><code>// 중복 자동 제거
+val ids = setOf(1, 2, 3, 3, 2) // {1, 2, 3}
+
+// Mutable
+val ids = mutableSetOf&lt;Int&gt;()
+ids.add(10)
+ids.removeIf { it < 3 }</code></pre>
+
+<h3>Map — 키-값 쌍</h3>
+<pre><code>val config = mapOf("key1" to 1, "key2" to 2)
+
+// Mutable
+val config = mutableMapOf("one" to 1)
+config["two"] = 2</code></pre>
+
+<h2>SDK 설계 원칙</h2>
+<div class="hl"><strong>원칙:</strong> 내부는 Mutable로 관리하고, 외부에는 Immutable로 노출합니다. <code>val</code>에 <code>MutableList</code>를 할당해도 참조만 불변이지 내용은 변경 가능하므로, 외부 노출 시 반드시 <code>toList()</code>로 복사하거나 <code>List</code> 타입으로 캐스팅합니다.</div>
+<div class="au"><div><div class="nm">고경은</div><div class="rl">Developer Platform Engineer @ KT 나스미디어</div></div><div class="au-lk"><a href="https://github.com/kkeman">GitHub</a><a href="../">Portfolio</a></div></div>
+</article>
+<footer><p>© 2026 고경은</p></footer>
+</body></html>

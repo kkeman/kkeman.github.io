@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>크래시율 100%에서 3%로 — SDK 관측 체계 구축기</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#08080c;--c1:#0f0f15;--c2:#15151d;--bdr:rgba(255,255,255,.055);--bdr-h:rgba(255,255,255,.1);--tx:#f2f1f4;--tx2:#9e9caa;--tx3:#5e5c6a;--tx4:#38374a;--em:#22c55e;--em-g:rgba(34,197,94,.06);--bl:#818cf8;--am:#fbbf24;--pk:#f472b6;--r:16px;--fd:'Outfit','Noto Sans KR',sans-serif;--fi:'Instrument Serif',serif;--fm:'IBM Plex Mono',monospace}
+html{scroll-behavior:smooth}body{font-family:var(--fd);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;overflow-x:hidden}::selection{background:var(--em);color:#000}
+nav{position:fixed;top:0;width:100%;z-index:200;padding:16px 0;background:rgba(8,8,12,.9);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--bdr)}
+.ni{max-width:760px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:var(--fm);font-size:14px;font-weight:500;color:var(--tx3);text-decoration:none}.logo b{color:var(--em)}
+.back{font-family:var(--fm);font-size:12px;color:var(--tx3);text-decoration:none;padding:7px 14px;border-radius:8px;border:1px solid var(--bdr);transition:all .2s}.back:hover{color:var(--tx2);border-color:var(--bdr-h)}
+article{max-width:760px;margin:0 auto;padding:120px 32px 80px}
+.meta{font-family:var(--fm);font-size:12px;color:var(--tx4);letter-spacing:.5px;margin-bottom:16px}
+article h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-1.5px;line-height:1.2;margin-bottom:16px}
+.sub{font-size:17px;color:var(--tx2);line-height:1.7;margin-bottom:40px;padding-bottom:40px;border-bottom:1px solid var(--bdr)}
+article h2{font-size:22px;font-weight:700;letter-spacing:-.5px;margin-top:48px;margin-bottom:16px;color:var(--tx)}
+article h3{font-size:18px;font-weight:600;margin-top:32px;margin-bottom:12px;color:var(--tx2)}
+article p{font-size:16px;color:var(--tx2);line-height:1.85;margin-bottom:20px}
+article strong{color:var(--tx);font-weight:600}
+article ul,article ol{margin:0 0 20px 20px;color:var(--tx2)}article li{font-size:16px;line-height:1.85;margin-bottom:8px}
+.hl{background:var(--em-g);border-left:3px solid var(--em);padding:16px 20px;border-radius:0 var(--r) var(--r) 0;margin:24px 0;font-size:15px;color:var(--tx2);line-height:1.75}.hl strong{color:var(--em)}
+pre{background:var(--c1);border:1px solid var(--bdr);border-radius:12px;padding:20px 24px;margin:20px 0;overflow-x:auto;font-family:var(--fm);font-size:13px;line-height:1.8;color:var(--tx2)}
+code{font-family:var(--fm);font-size:14px;background:var(--c2);padding:2px 6px;border-radius:4px;color:var(--tx2)}pre code{background:none;padding:0}
+.rb{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;margin:24px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;text-align:center}
+.rb .v{font-size:28px;font-weight:800;letter-spacing:-1px}.rb .v.g{color:var(--em)}.rb .v.b{color:var(--bl)}.rb .v.a{color:var(--am)}
+.rb .l{font-family:var(--fm);font-size:11px;color:var(--tx4);margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+.pv{display:flex;align-items:center;gap:0;margin:24px 0;padding:20px;background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);overflow-x:auto;flex-wrap:wrap;justify-content:center}
+.pn{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:80px}
+.pi{width:40px;height:40px;border-radius:10px;border:1px solid var(--bdr);background:var(--c2);display:flex;align-items:center;justify-content:center;font-size:16px}
+.pm{font-family:var(--fm);font-size:10px;color:var(--tx4)}.pa{color:var(--tx4);font-size:11px;font-family:var(--fm);margin:0 4px;margin-bottom:16px}
+.au{display:flex;align-items:center;gap:16px;padding:32px 0;margin-top:48px;border-top:1px solid var(--bdr)}
+.au .nm{font-size:16px;font-weight:700}.au .rl{font-size:13px;color:var(--tx3)}
+.au-lk{margin-left:auto;display:flex;gap:8px}
+.au-lk a{font-family:var(--fm);font-size:12px;color:var(--tx3);text-decoration:none;padding:6px 12px;border:1px solid var(--bdr);border-radius:6px;transition:all .2s}.au-lk a:hover{color:var(--tx2);border-color:var(--bdr-h)}
+footer{max-width:760px;margin:0 auto;padding:32px;border-top:1px solid var(--bdr);text-align:center}footer p{font-family:var(--fm);font-size:11px;color:var(--tx4)}
+@media(max-width:600px){.rb{grid-template-columns:1fr}.pv .pa{display:none}}
+</style>
+</head>
+<body>
+<nav><div class="ni"><a href="../" class="logo"><b>$</b> gogyeongeun</a><a href="./" class="back">← Blog</a></div></nav>
+<article>
+<div class="meta">2026.05 · 8 min read</div>
+<h1>크래시율 100%에서 3%로 — SDK 관측 체계 구축기</h1>
+<p class="sub">모니터링이 전무한 SDK에 Sentry를 도입하고, 크래시 대응 프로세스를 체계화한 이야기.</p>
+<h2>현실: 모니터링 제로 상태</h2>
+<p>제가 합류했을 때 SDK의 크래시 모니터링은 <strong>존재하지 않았습니다.</strong> 크래시가 발생해도 알 방법이 없었고, 유일한 경로는 매체사에서 "SDK 때문에 앱이 죽는다"고 연락이 오는 것이었습니다.</p>
+
+<h2>왜 Sentry인가</h2>
+<p>Firebase Crashlytics도 검토했지만, SDK 안에 또 다른 Firebase SDK를 넣으면 매체사 앱과 의존성 충돌 위험이 있었습니다. <strong>Sentry는 독립적으로 동작하고, SDK 내부 초기화가 간단하며, 릴리스별 추적이 강력했습니다.</strong></p>
+
+<h2>도입 과정</h2>
+<h3>1. SDK 내부 Sentry 초기화</h3>
+<p>매체사 앱이 이미 Sentry를 사용할 수 있으므로, SDK 전용 Hub을 별도로 생성하여 충돌을 방지했습니다.</p>
+
+<h3>2. 릴리스 태깅</h3>
+<p>SDK 버전을 릴리스 태그로 전송. "이번 릴리스에서 크래시가 몇 건인지" 대시보드에서 바로 확인 가능.</p>
+
+<h3>3. 알림 체계</h3>
+<p>새 크래시 이슈 → Slack 즉시 알림. 임계값 초과 시 긴급 알림 별도 설정.</p>
+
+<h3>4. 대응 프로세스</h3>
+<ol>
+<li><strong>Triage:</strong> 영향 범위(사용자 수, 앱 수) 파악</li>
+<li><strong>Priority:</strong> Critical / High / Medium 분류</li>
+<li><strong>Fix:</strong> Critical은 핫픽스, High는 다음 정기 릴리스</li>
+<li><strong>Postmortem:</strong> Critical 사후 분석 문서</li>
+</ol>
+
+<h2>결과</h2>
+<div class="rb">
+<div><div class="v g">97%↓</div><div class="l">크래시율 감소</div></div>
+<div><div class="v b">270건</div><div class="l">잔존 크래시</div></div>
+<div><div class="v a">&lt;5min</div><div class="l">감지 시간</div></div>
+</div>
+
+<p>대부분은 <strong>특정 Android 버전 WebView 초기화 실패</strong>, <strong>네트워크 타임아웃 미처리</strong>, <strong>null 체크 누락</strong>이었습니다. 모니터링이 없었을 때는 이런 문제가 있는지조차 몰랐습니다.</p>
+
+<div class="hl"><strong>핵심:</strong> SDK는 남의 앱 안에서 돌아갑니다. 내가 직접 사용자를 볼 수 없기 때문에 관측 체계가 곧 눈과 귀입니다.</div>
+<div class="au"><div><div class="nm">고경은</div><div class="rl">Developer Platform Engineer @ KT 나스미디어</div></div><div class="au-lk"><a href="https://github.com/kkeman">GitHub</a><a href="../">Portfolio</a></div></div>
+</article>
+<footer><p>© 2026 고경은</p></footer>
+</body></html>

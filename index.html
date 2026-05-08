@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>고경은 — Developer Platform Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@1&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#08080c;--c1:#0f0f15;--c2:#15151d;--c3:#1c1c28;
+  --bdr:rgba(255,255,255,.055);--bdr-h:rgba(255,255,255,.1);
+  --tx:#f2f1f4;--tx2:#9e9caa;--tx3:#5e5c6a;--tx4:#38374a;
+  --em:#22c55e;--em-g:rgba(34,197,94,.06);--em-b:rgba(34,197,94,.12);
+  --bl:#818cf8;--bl-g:rgba(129,140,248,.06);
+  --am:#fbbf24;--pk:#f472b6;
+  --r:16px;
+  --fd:'Outfit','Noto Sans KR',sans-serif;
+  --fi:'Instrument Serif',serif;
+  --fm:'IBM Plex Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fd);background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--em);color:#000}
+
+.w{max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:16px 0;transition:all .35s}
+nav.sc{background:rgba(8,8,12,.9);backdrop-filter:blur(20px) saturate(1.4);border-bottom:1px solid var(--bdr)}
+.ni{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:var(--fm);font-size:14px;font-weight:500;color:var(--tx3)}
+.logo b{color:var(--em)}
+.nr{display:flex;gap:4px}
+.nr a{font-family:var(--fm);font-size:12px;color:var(--tx3);text-decoration:none;padding:7px 14px;border-radius:8px;transition:all .2s}
+.nr a:hover{color:var(--tx2);background:var(--c2)}
+.nr .cta{color:var(--em);border:1px solid var(--em-b)}
+.nr .cta:hover{background:var(--em-g)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.rv.v{opacity:1;transform:none}
+.rv-d1{transition-delay:.08s}.rv-d2{transition-delay:.16s}.rv-d3{transition-delay:.24s}.rv-d4{transition-delay:.32s}.rv-d5{transition-delay:.4s}
+.serif{font-family:var(--fi);font-style:italic;font-weight:400}
+
+/* ═══════════════════════════════════════════
+   HERO — FULL VIEWPORT
+   ═══════════════════════════════════════════ */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 60px;position:relative}
+
+.hero-top{margin-bottom:48px}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:12px;color:var(--em);margin-bottom:28px}
+.status-dot{width:7px;height:7px;background:var(--em);border-radius:50%;animation:glow 2s ease infinite}
+@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{box-shadow:0 0 0 6px rgba(34,197,94,0)}}
+
+.hero h1{font-size:clamp(48px,8vw,96px);font-weight:900;letter-spacing:-4px;line-height:.95;margin-bottom:24px}
+.hero h1 .line{display:block}
+.hero h1 .thin{font-weight:400;color:var(--tx2)}
+.hero h1 .accent{color:var(--em)}
+
+.hero-sub{font-size:18px;color:var(--tx2);max-width:560px;line-height:1.75}
+.hero-sub strong{color:var(--tx);font-weight:600}
+
+/* ═══════════════════════════════════════════
+   BENTO GRID
+   ═══════════════════════════════════════════ */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:12px;margin-top:56px}
+.bento .card{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:28px;transition:all .35s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+.bento .card:hover{border-color:var(--bdr-h);background:var(--c2);transform:translateY(-2px)}
+
+/* METRIC CARDS */
+.b-metric .b-val{font-size:36px;font-weight:800;letter-spacing:-1.5px;margin-bottom:4px}
+.b-metric .b-lab{font-family:var(--fm);font-size:11px;color:var(--tx3);letter-spacing:.5px;text-transform:uppercase}
+.b-metric .b-sub{font-size:13px;color:var(--tx4);margin-top:6px}
+
+/* TERMINAL CARD — spans 2 cols */
+.b-term{grid-column:span 2;grid-row:span 2;padding:0!important;display:flex;flex-direction:column}
+.t-bar{display:flex;align-items:center;gap:7px;padding:14px 18px;border-bottom:1px solid var(--bdr);flex-shrink:0}
+.t-dot{width:9px;height:9px;border-radius:50%}.t-r{background:#ff5f57}.t-y{background:#febc2e}.t-g{background:#28c840}
+.t-title{font-family:var(--fm);font-size:11px;color:var(--tx4);margin:0 auto}
+.t-body{padding:18px;font-family:var(--fm);font-size:12.5px;line-height:1.9;color:var(--tx2);flex:1;overflow:hidden}
+.t-body .cm{color:var(--em)}.t-body .fl{color:var(--bl)}.t-body .st{color:var(--am)}.t-body .ct{color:var(--tx4)}
+.t-body .ok{color:var(--em)}.t-body .nm{color:var(--pk)}
+.cur{display:inline-block;width:7px;height:15px;background:var(--em);animation:bk 1s step-end infinite;vertical-align:text-bottom;margin-left:1px}
+@keyframes bk{0%,100%{opacity:1}50%{opacity:0}}
+
+/* PIPELINE CARD */
+.b-pipe{grid-column:span 2}
+.pipe-flow{display:flex;align-items:center;gap:0;margin-top:16px}
+.pipe-node{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1}
+.pipe-icon{width:40px;height:40px;border-radius:10px;border:1px solid var(--bdr);background:var(--c2);display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s}
+.pipe-node:hover .pipe-icon{border-color:var(--em-b);background:var(--em-g);transform:scale(1.1)}
+.pipe-name{font-family:var(--fm);font-size:10px;color:var(--tx4)}
+.pipe-arr{color:var(--tx4);font-size:11px;font-family:var(--fm);margin-bottom:16px}
+
+/* LINKS CARD */
+.b-links{display:flex;flex-direction:column;gap:8px;grid-column:span 2}
+.b-link{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;text-decoration:none;color:var(--tx);transition:all .2s;font-size:14px;font-weight:500}
+.b-link:hover{background:var(--c3)}
+.b-link-i{font-size:18px;width:28px;text-align:center}
+.b-link span{font-family:var(--fm);font-size:12px;color:var(--tx3);margin-left:auto}
+
+/* ═══════════════════════════════════════════
+   SECTION STYLES
+   ═══════════════════════════════════════════ */
+section{padding:120px 0}
+.s-ey{font-family:var(--fm);font-size:11px;color:var(--em);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;font-weight:500}
+.s-hd{font-size:clamp(32px,5vw,48px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:20px}
+.s-hd .thin{font-weight:400;color:var(--tx2)}
+.s-sb{font-size:16px;color:var(--tx2);max-width:480px;line-height:1.7;margin-bottom:72px}
+
+/* ═══════════════════════════════════════════
+   EXPERIENCE
+   ═══════════════════════════════════════════ */
+.xp{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);margin-bottom:16px;transition:all .3s;overflow:hidden}
+.xp:hover{border-color:var(--bdr-h)}
+.xp-main{position:relative}.xp-main::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--em),var(--bl),var(--pk))}
+.xp-inner{padding:40px}
+.xp-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.xp-co{font-size:26px;font-weight:800;letter-spacing:-.8px}
+.xp-badge{font-family:var(--fm);font-size:11px;color:var(--em);background:var(--em-g);border:1px solid var(--em-b);padding:3px 12px;border-radius:100px;font-weight:500;margin-left:10px}
+.xp-rl{font-size:14px;color:var(--tx2);margin-top:4px}
+.xp-dt{font-family:var(--fm);font-size:12px;color:var(--tx4)}
+
+.xp-list{display:grid;gap:14px}
+.xp-item{font-size:14.5px;color:var(--tx2);line-height:1.75;padding-left:20px;position:relative}
+.xp-item::before{content:'';position:absolute;left:0;top:11px;width:8px;height:2px;background:var(--em);border-radius:1px}
+.xp-item strong{color:var(--tx);font-weight:600}
+.xp-item .hi{font-family:var(--fm);font-size:12px;color:var(--em);background:var(--em-g);padding:2px 8px;border-radius:4px;font-weight:500}
+
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}
+.tags span{font-family:var(--fm);font-size:11px;padding:5px 12px;border:1px solid var(--bdr);border-radius:8px;color:var(--tx4);transition:all .2s}
+.tags span:hover{border-color:var(--bdr-h);color:var(--tx3)}
+
+.xp-sec .xp-inner{padding:28px 32px}
+.xp-sec .xp-co{font-size:20px}
+.xp-sec .xp-item{font-size:14px}
+
+/* EARLIER TIMELINE */
+.earlier{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+.e-card{background:var(--c1);border:1px solid var(--bdr);border-radius:14px;padding:24px;transition:all .3s}
+.e-card:hover{border-color:var(--bdr-h);background:var(--c2)}
+.e-card h4{font-size:16px;font-weight:700;margin-bottom:2px}
+.e-card .e-d{font-family:var(--fm);font-size:11px;color:var(--tx4);margin-bottom:10px}
+.e-card p{font-size:13px;color:var(--tx3);line-height:1.6}
+
+/* ═══════════════════════════════════════════
+   PROJECTS
+   ═══════════════════════════════════════════ */
+.pj-bento{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.pj{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:32px;transition:all .35s;position:relative;overflow:hidden}
+.pj:hover{border-color:var(--bdr-h);background:var(--c2);transform:translateY(-3px)}
+.pj::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(34,197,94,.02),transparent 60%);pointer-events:none;opacity:0;transition:opacity .3s}
+.pj:hover::after{opacity:1}
+.pj-em{font-size:28px;margin-bottom:16px;display:block}
+.pj h3{font-size:19px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px}
+.pj p{font-size:14px;color:var(--tx2);line-height:1.7;margin-bottom:18px}
+.pj-meta{display:flex;gap:16px;padding-top:14px;border-top:1px solid var(--bdr)}
+.pj-meta span{font-family:var(--fm);font-size:11px;color:var(--tx4)}
+.pj-meta strong{color:var(--em);font-weight:600}
+.pj-feat{grid-column:span 2;background:linear-gradient(135deg,var(--c1),rgba(34,197,94,.03))!important;border-color:var(--em-b)!important}
+.pj-feat h3{font-size:24px}
+.pj-feat p{font-size:15px;max-width:640px}
+
+/* ═══════════════════════════════════════════
+   SKILLS
+   ═══════════════════════════════════════════ */
+.sk-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sk-b{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:28px}
+.sk-b h3{font-family:var(--fm);font-size:12px;font-weight:600;color:var(--tx3);text-transform:uppercase;letter-spacing:1px;margin-bottom:18px}
+.sk-b h3 em{font-style:normal;margin-right:6px}
+.sk-l{display:flex;flex-direction:column;gap:10px}
+.sk-i{font-size:14px;color:var(--tx3);display:flex;align-items:center;gap:10px;transition:color .2s}
+.sk-i:hover{color:var(--tx2)}
+.sk-d{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+.edu-g{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:48px}
+.edu-c{background:var(--c1);border:1px solid var(--bdr);border-radius:14px;padding:24px}
+.edu-c h4{font-size:16px;font-weight:700;margin-bottom:4px}
+.edu-c .ed{font-family:var(--fm);font-size:11px;color:var(--tx4);margin-bottom:8px}
+.edu-c p{font-size:13px;color:var(--tx3);line-height:1.6}
+
+/* ═══════════════════════════════════════════
+   CONTACT
+   ═══════════════════════════════════════════ */
+.ct-sec{border-top:1px solid var(--bdr)}
+.ct-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+.ct-left h2{font-size:clamp(36px,5vw,56px);font-weight:900;letter-spacing:-2.5px;line-height:1.05;margin-bottom:16px}
+.ct-left h2 .thin{font-weight:400;color:var(--tx2)}
+.ct-left h2 .accent{color:var(--em)}
+.ct-left p{font-size:15px;color:var(--tx2);line-height:1.7}
+.ct-links{display:flex;flex-direction:column;gap:8px}
+.ct-lk{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--c1);border:1px solid var(--bdr);border-radius:14px;text-decoration:none;color:var(--tx);transition:all .3s}
+.ct-lk:hover{border-color:var(--bdr-h);background:var(--c2);transform:translateX(4px)}
+.ct-lk-i{font-size:18px;width:28px;text-align:center}
+.ct-lk-l{font-family:var(--fm);font-size:10px;color:var(--tx4);letter-spacing:1px;text-transform:uppercase}
+.ct-lk-v{font-size:15px;font-weight:600}
+
+/* BLOG */
+.blog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.blog-card{background:var(--c1);border:1px solid var(--bdr);border-radius:var(--r);padding:32px;transition:all .35s;text-decoration:none;color:var(--tx);display:flex;flex-direction:column;position:relative;overflow:hidden}
+.blog-card:hover{border-color:var(--bdr-h);background:var(--c2);transform:translateY(-3px)}
+.blog-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--em),var(--bl));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.blog-card:hover::after{transform:scaleX(1)}
+.blog-date{font-family:var(--fm);font-size:11px;color:var(--tx4);letter-spacing:.5px;margin-bottom:12px}
+.blog-card h3{font-size:18px;font-weight:700;letter-spacing:-.3px;margin-bottom:10px;line-height:1.4}
+.blog-card p{font-size:14px;color:var(--tx3);line-height:1.7;flex:1}
+.blog-tags{display:flex;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid var(--bdr)}
+.blog-tags span{font-family:var(--fm);font-size:10px;color:var(--tx4);padding:3px 8px;border:1px solid var(--bdr);border-radius:4px}
+.blog-more{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:12px;color:var(--tx3);margin-top:8px}
+
+footer{padding:32px 0;border-top:1px solid var(--bdr);text-align:center}
+footer p{font-family:var(--fm);font-size:11px;color:var(--tx4)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .b-term{grid-column:span 2;grid-row:span 1}
+  .b-pipe{grid-column:span 2}
+  .b-links{grid-column:span 2}
+}
+@media(max-width:768px){
+  .w{padding:0 20px}
+  .nr a:not(.cta){display:none}
+  .bento,.pj-bento,.sk-g,.edu-g,.blog-grid{grid-template-columns:1fr}
+  .pj-feat{grid-column:1}
+  .b-term{grid-column:1;grid-row:auto}
+  .b-pipe{grid-column:1}
+  .b-links{grid-column:1}
+  .ct-grid{grid-template-columns:1fr;gap:48px}
+  section{padding:80px 0}
+  .hero{padding:130px 0 40px;min-height:auto}
+  .pipe-flow{flex-wrap:wrap;gap:8px;justify-content:center}
+  .pipe-arr{display:none}
+  .earlier{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav id="nv"><div class="w ni">
+  <div class="logo"><b>$</b> gogyeongeun</div>
+  <div class="nr">
+    <a href="#exp">experience</a>
+    <a href="#proj">projects</a>
+    <a href="#skills">skills</a>
+    <a href="blog/">blog</a>
+    <a href="mailto:kkeman11@gmail.com" class="cta">contact →</a>
+  </div>
+</div></nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero"><div class="w">
+  <div class="hero-top">
+    <div class="status"><span class="status-dot"></span> Open to opportunities</div>
+    <h1>
+      <span class="line">Platform</span>
+      <span class="line"><span class="serif">Engineer</span><span class="accent">.</span></span>
+      <span class="line thin">고경은</span>
+    </h1>
+    <p class="hero-sub"><strong>56개 앱에 탑재된 SDK</strong>를 설계하고, 배포를 자동화하고, 안정성을 관측합니다. 배포 시간을 6배 단축하고 크래시율을 97% 낮추며, 개발자가 신뢰하는 플랫폼을 만들어 왔습니다.</p>
+  </div>
+
+  <!-- BENTO -->
+  <div class="bento">
+    <!-- Metrics -->
+    <div class="card b-metric rv rv-d1"><div class="b-val" style="color:var(--em)"><span class="ctr" data-t="56">0</span>+</div><div class="b-lab">SDK Integrations</div><div class="b-sub">앱 · SSP 탑재</div></div>
+    <div class="card b-metric rv rv-d2"><div class="b-val" style="color:var(--bl)"><span class="ctr" data-t="250">0</span>K</div><div class="b-lab">Daily Users</div><div class="b-sub">일 사용자</div></div>
+
+    <!-- Terminal -->
+    <div class="card b-term rv rv-d1">
+      <div class="t-bar"><span class="t-dot t-r"></span><span class="t-dot t-y"></span><span class="t-dot t-g"></span><span class="t-title">nap-sdk deploy --release</span></div>
+      <div class="t-body" id="tm"></div>
+    </div>
+
+    <div class="card b-metric rv rv-d3"><div class="b-val" style="color:var(--am)"><span class="ctr" data-t="6">0</span>×</div><div class="b-lab">Deploy Speed</div><div class="b-sub">2h → 20min</div></div>
+    <div class="card b-metric rv rv-d4"><div class="b-val" style="color:var(--pk)"><span class="ctr" data-t="97">0</span>%↓</div><div class="b-lab">Crash Rate</div><div class="b-sub">100% → 3%</div></div>
+
+    <!-- Pipeline -->
+    <div class="card b-pipe rv">
+      <div style="font-family:var(--fm);font-size:11px;color:var(--tx4);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Release Pipeline</div>
+      <div class="pipe-flow">
+        <div class="pipe-node"><div class="pipe-icon">📝</div><div class="pipe-name">Push</div></div>
+        <span class="pipe-arr">→</span>
+        <div class="pipe-node"><div class="pipe-icon">🔍</div><div class="pipe-name">Test</div></div>
+        <span class="pipe-arr">→</span>
+        <div class="pipe-node"><div class="pipe-icon">📦</div><div class="pipe-name">Maven</div></div>
+        <span class="pipe-arr">→</span>
+        <div class="pipe-node"><div class="pipe-icon">🔥</div><div class="pipe-name">Firebase</div></div>
+        <span class="pipe-arr">→</span>
+        <div class="pipe-node"><div class="pipe-icon">📋</div><div class="pipe-name">Docs</div></div>
+        <span class="pipe-arr">→</span>
+        <div class="pipe-node"><div class="pipe-icon">✅</div><div class="pipe-name">Live</div></div>
+      </div>
+    </div>
+
+    <!-- Links -->
+    <div class="card b-links rv">
+      <a href="https://github.com/kkeman" target="_blank" class="b-link">💻 GitHub<span>→</span></a>
+      <a href="mailto:kkeman11@gmail.com" class="b-link">✉️ Email<span>→</span></a>
+      <a href="#" class="b-link">🧠 Blog<span>→</span></a>
+    </div>
+  </div>
+</div></section>
+
+<!-- ═══ EXPERIENCE ═══ -->
+<section id="exp"><div class="w">
+  <div class="s-ey rv">Experience</div>
+  <div class="s-hd rv">문제를 정의하고<br><span class="thin serif">시스템으로</span> 풀었습니다</div>
+  <div class="s-sb rv">SDK 아키텍처, 빌드 파이프라인, 패키지 레지스트리, 관측 체계 — 15년간 모바일 생태계의 레이어를 하나씩 쌓아왔습니다.</div>
+
+  <div class="xp xp-main rv">
+    <div class="xp-inner">
+      <div class="xp-top">
+        <div><div class="xp-co">KT 나스미디어 <span class="xp-badge">현재</span></div><div class="xp-rl">Android · iOS 광고 SDK 개발 리드</div></div>
+        <div class="xp-dt">2021.02 ~</div>
+      </div>
+      <div class="xp-list">
+        <div class="xp-item"><strong>Reward Offerwall SDK</strong> — 56개 앱·SSP에 탑재된 리워드 광고 플랫폼. Clean Architecture + MVVM + Dagger 설계 <span class="hi">DAU 25만</span></div>
+        <div class="xp-item"><strong>배포 인프라 구축</strong> — Maven Central·CocoaPods·SPM 체계 설계. GitHub Actions로 전 과정 자동화 <span class="hi">2h → 20min</span></div>
+        <div class="xp-item"><strong>관측 체계 도입</strong> — Sentry 연동으로 장애 감지·대응 체계화 <span class="hi">크래시율 97%↓</span></div>
+        <div class="xp-item"><strong>iOS 현대화</strong> — Obj-C → Swift, CocoaPods·SPM 도입, TestFlight 배포 표준화</div>
+        <div class="xp-item"><strong>하이브리드 SDK</strong> — WebView JS Bridge 아키텍처, Next.js·React 웹 SDK 개발</div>
+        <div class="xp-item"><strong>조직 전파</strong> — 8주 Android 교육(13명), CI/CD 세미나(20명)</div>
+      </div>
+      <div class="tags"><span>Kotlin</span><span>Swift</span><span>Clean Architecture</span><span>MVVM</span><span>Dagger/Hilt</span><span>GitHub Actions</span><span>Maven Central</span><span>CocoaPods</span><span>SPM</span><span>Sentry</span><span>Next.js</span></div>
+    </div>
+  </div>
+
+  <div class="xp xp-sec rv">
+    <div class="xp-inner">
+      <div class="xp-top">
+        <div><div class="xp-co">인라이플</div><div class="xp-rl">Android 개발 파트장</div></div>
+        <div class="xp-dt">2019.06 ~ 2021.02</div>
+      </div>
+      <div class="xp-list">
+        <div class="xp-item"><strong>푸딩 라이브 쇼핑 앱</strong> — 진입 속도 개선, 플레이어 확장. MVVM + Coroutine</div>
+        <div class="xp-item"><strong>캐시키보드 SDK</strong> — AAR 독립 SDK 개발·배포</div>
+        <div class="xp-item">코드 리뷰 프로세스 도입, 팀 기술 의사결정 리드</div>
+      </div>
+      <div class="tags"><span>Kotlin</span><span>MVVM</span><span>Coroutine</span><span>Realm</span></div>
+    </div>
+  </div>
+
+  <div class="earlier rv">
+    <div class="e-card"><h4>블루트리</h4><div class="e-d">2016 ~ 2019</div><p>VR·웹하드 10개+ 앱. Unity↔Native. 빅플레이 플러스 10만+ DL</p></div>
+    <div class="e-card"><h4>미동전자통신</h4><div class="e-d">2014 ~ 2016</div><p>블랙박스 Urive. 4개 플랫폼 크로스 개발</p></div>
+    <div class="e-card"><h4>네이블</h4><div class="e-d">2010 ~ 2014</div><p>RCS 메신저 Joyn. 통신 3사 기본 앱. AOSP</p></div>
+  </div>
+</div></section>
+
+<!-- ═══ PROJECTS ═══ -->
+<section id="proj"><div class="w">
+  <div class="s-ey rv">Projects</div>
+  <div class="s-hd rv"><span class="serif">만든</span> 것들</div>
+  <div class="s-sb rv">SDK 설계부터 배포 파이프라인, 관측 체계까지 — 개발자 플랫폼의 각 레이어를 직접 구축했습니다.</div>
+  <div class="pj-bento">
+    <div class="pj pj-feat rv"><span class="pj-em">💰</span><h3>NAP Reward SDK</h3><p>타깃팅 기반 리워드 오퍼월 플랫폼. Clean Architecture + MVVM + Dagger로 설계하고 Maven Central·CocoaPods로 양 플랫폼 배포. 하나머니 등 56개 앱·SSP에 탑재되어 일 25만 DAU를 안정적으로 서빙하는 핵심 SDK</p><div class="pj-meta"><span><strong>56+</strong> 앱 탑재</span><span><strong>250K</strong> DAU</span><span><strong>Android · iOS</strong></span><span>2021 ~</span></div></div>
+    <div class="pj rv rv-d1"><span class="pj-em">⚙️</span><h3>릴리스 자동화</h3><p>GitHub Actions 기반. 빌드→테스트→Sonatype→Firebase→Confluence 릴리스 노트까지 원스톱 파이프라인</p><div class="pj-meta"><span><strong>6×</strong> 배포 속도</span></div></div>
+    <div class="pj rv rv-d2"><span class="pj-em">📣</span><h3>NAP SSP SDK (iOS)</h3><p>지면 광고 iOS SDK 신규 개발. Swift 전환과 CocoaPods·SPM 도입으로 배포 체계 현대화</p><div class="pj-meta"><span><strong>Swift</strong></span><span><strong>SPM</strong></span></div></div>
+    <div class="pj rv rv-d1"><span class="pj-em">👀</span><h3>모니터링 봇</h3><p>OCI Compute + Python 24/7 운영. 예약 모니터링, Coin API 연동 알림 서버를 직접 설계·운영</p><div class="pj-meta"><span><strong>Python</strong></span><span><strong>OCI</strong></span><span>2026 ~</span></div></div>
+  </div>
+</div></section>
+
+<!-- ═══ SKILLS ═══ -->
+<section id="skills"><div class="w">
+  <div class="s-ey rv">Skills</div>
+  <div class="s-hd rv">기술 <span class="serif">스택</span></div>
+  <div class="sk-g rv">
+    <div class="sk-b"><h3><em>📱</em> Mobile SDK</h3><div class="sk-l">
+      <div class="sk-i"><span class="sk-d" style="background:var(--em)"></span>Kotlin · Java</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--em)"></span>Swift · Objective-C</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--em)"></span>Clean Architecture · MVVM</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--em)"></span>Dagger / Hilt</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--em)"></span>Coroutine · RxKotlin</div>
+    </div></div>
+    <div class="sk-b"><h3><em>🚀</em> Platform</h3><div class="sk-l">
+      <div class="sk-i"><span class="sk-d" style="background:var(--bl)"></span>Maven Central · CocoaPods · SPM</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--bl)"></span>GitHub Actions CI/CD</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--bl)"></span>Firebase App Distribution</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--bl)"></span>Sentry Monitoring</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--bl)"></span>Sonatype · Confluence</div>
+    </div></div>
+    <div class="sk-b"><h3><em>🌐</em> Web & Infra</h3><div class="sk-l">
+      <div class="sk-i"><span class="sk-d" style="background:var(--pk)"></span>Next.js · React</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--pk)"></span>TypeScript · JavaScript</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--pk)"></span>WebView JS Bridge</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--pk)"></span>OCI · Linux · Python</div>
+      <div class="sk-i"><span class="sk-d" style="background:var(--pk)"></span>CloudFlare · Firebase Auth</div>
+    </div></div>
+  </div>
+  <div class="edu-g rv">
+    <div class="edu-c"><h4>조선대학교</h4><div class="ed">컴퓨터공학 졸업 · 2010</div><p>자바 프로그래밍, 알고리즘 전공. 창업 동아리 Java 개발자</p></div>
+    <div class="edu-c"><h4>자격증</h4><div class="ed">국가자격</div><p>정보처리기사 · 사무자동화산업기사 · 실기교사(전자계산)</p></div>
+  </div>
+</div></section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="ct-sec"><div class="w">
+  <div class="ct-grid">
+    <div class="ct-left rv">
+      <h2>같이 <span class="serif">일할</span><br>기회를 <span class="thin">찾고</span><br><span class="accent">있습니다</span></h2>
+      <p>SDK 플랫폼, 개발자 도구, DevOps — 개발자 경험을 만드는 일이라면.</p>
+    </div>
+    <div class="ct-links rv">
+      <a href="mailto:kkeman11@gmail.com" class="ct-lk"><span class="ct-lk-i">✉️</span><div><div class="ct-lk-l">Email</div><div class="ct-lk-v">kkeman11@gmail.com</div></div></a>
+      <a href="tel:010-4787-4439" class="ct-lk"><span class="ct-lk-i">📞</span><div><div class="ct-lk-l">Phone</div><div class="ct-lk-v">010-4787-4439</div></div></a>
+      <a href="https://github.com/kkeman" target="_blank" class="ct-lk"><span class="ct-lk-i">💻</span><div><div class="ct-lk-l">GitHub</div><div class="ct-lk-v">github.com/kkeman</div></div></a>
+      <a href="#" class="ct-lk"><span class="ct-lk-i">🧠</span><div><div class="ct-lk-l">Blog</div><div class="ct-lk-v">Tech Blog</div></div></a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="w"><p>© 2026 고경은</p></div></footer>
+
+<script>
+// Nav
+const nv=document.getElementById('nv');
+const chk=()=>nv.classList.toggle('sc',scrollY>60);
+chk();window.addEventListener('scroll',chk,{passive:true});
+
+// Reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.06,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Counters
+const co=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,t=+el.dataset.t,d=1600,s=performance.now();
+  const go=n=>{const p=Math.min((n-s)/d,1),v=1-Math.pow(1-p,4);el.textContent=Math.floor(v*t);if(p<1)requestAnimationFrame(go)};
+  requestAnimationFrame(go);co.unobserve(el);
+}),{threshold:.5});
+document.querySelectorAll('.ctr').forEach(el=>co.observe(el));
+
+// Terminal
+const lines=[
+  '<span class="cm">$</span> nap-sdk deploy <span class="fl">--release</span>',
+  '',
+  '<span class="ct">  Building Android (Kotlin)...</span>',
+  '<span class="ct">  Building iOS (Swift)...</span>',
+  '<span class="ok">  ✓ Build passed</span>',
+  '',
+  '<span class="ct">  → Maven Central</span>',
+  '<span class="ct">  → CocoaPods</span>',
+  '<span class="ok">  ✓ Published</span>',
+  '',
+  '<span class="ct">  Sentry health check...</span>',
+  '<span class="ok">  ✓ Crash rate:</span> <span class="nm">3%</span>',
+  '',
+  '<span class="ok">  ✓ Deploy complete</span> <span class="ct">20min</span>',
+  '<span class="ok">  ✓ Serving</span> <span class="nm">250,000</span> <span class="ok">users</span>',
+];
+const tm=document.getElementById('tm');
+let li=0;
+function tl(){
+  if(li>=lines.length){tm.innerHTML+='<div><span class="cm">$</span> <span class="cur"></span></div>';return}
+  const t=lines[li];
+  if(!t){tm.innerHTML+='<br>';li++;setTimeout(tl,100);return}
+  const d=document.createElement('div');
+  d.style.cssText='opacity:0;transform:translateY(3px);transition:all .25s';
+  d.innerHTML=t;tm.appendChild(d);
+  requestAnimationFrame(()=>{d.style.opacity='1';d.style.transform='none'});
+  li++;setTimeout(tl,90+Math.random()*80);
+}
+setTimeout(tl,600);
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})}));
+</script>
+
+</body>
+</html>
